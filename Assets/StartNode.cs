@@ -8,17 +8,45 @@ public class StartNode : PathNode
 
     public bool debugLines = true;
 
-    public float TotalDistance()
+    public float totalDistance { get; private set; }
+
+    //use this function to (re)calculate the distances along the path
+    public float CalculateDistances()
     {
         PathNode rover = this;
         float totalD = 0f;
         while (rover.next != null)
         {
             totalD += (rover.next.transform.position - rover.transform.position).magnitude;
-
+            rover.distBetween = NodeDistance(rover, rover.next);
             rover = rover.next;
         }
+
+        totalDistance = totalD;
         return totalD;
+    }
+    //dumb version of the pathing that traverses the nodes everytime, replace with one that references the current node
+    public Vector2 PosOnPath(float dist)
+    {
+        PathNode rover = this;
+        float travelDist = 0f;
+        while (rover.next != null)
+        {
+            if (rover.distBetween + travelDist >= dist)
+            {
+                break;
+            }
+            travelDist += rover.distBetween;
+            rover = rover.next;
+        }
+
+        if (rover.next != null)
+        {
+            return Vector2.Lerp(rover.transform.position, rover.next.transform.position, (dist - travelDist)/ rover.distBetween);
+        } else
+        {
+            return rover.transform.position;
+        }
     }
 
     private void Start()
@@ -30,11 +58,11 @@ public class StartNode : PathNode
             end = null;
             enabled = false;
         }
+        CalculateDistances();
     }
 
-    private void Update()
+    private void OnDrawGizmos()
     {
-        print(TotalDistance());
         if (debugLines)
         {
             PathNode rover = this;
@@ -44,6 +72,11 @@ public class StartNode : PathNode
                 rover = rover.next;
             }
         }
+    }
+
+    private void Update()
+    {
+
     }
 
     public static void DrawDebugLine(Vector3 start, Vector3 end)
@@ -68,5 +101,10 @@ public class StartNode : PathNode
             rover = rover.next;
         }
         return safetyCounter < 999;
+    }
+
+    private float NodeDistance(PathNode start, PathNode end)
+    {
+        return (end.transform.position - start.transform.position).magnitude;
     }
 }

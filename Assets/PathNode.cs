@@ -6,6 +6,6 @@ public class PathNode : MonoBehaviour
 {
     public PathNode next;
     //public PathNode prev;
-
+    public float distBetween;
     
 }
