@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public GameObject target;
+    private GameObject target;
     private Tower parent;
 
 
     void Update()
     {
         MoveToTarget();
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.tag == "Enemy"){
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -21,9 +27,7 @@ public class Projectile : MonoBehaviour
         newProj.target = newTarget;
     }
     private void MoveToTarget() {
-        Debug.Log("moving?");
         if (target != null && parent != null) {
-            Debug.Log(parent);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.projectileSpeed);
         }
     }

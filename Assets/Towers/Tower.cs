@@ -28,7 +28,6 @@ public class Tower : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D enemy) {
         if (enemy.tag == "Enemy") {
-            Debug.Log("aaa");
             target = enemy.GetComponent<DummyEnemy>();
         }
     }

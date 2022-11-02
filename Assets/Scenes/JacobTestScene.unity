@@ -525,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 733396994068475587}
   distanceTraveled: 0
-  speed: 1
+  enemy: {fileID: 1037198131}
 --- !u!212 &1037198133
 SpriteRenderer:
   m_ObjectHideFlags: 0
