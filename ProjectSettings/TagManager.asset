@@ -8,6 +8,7 @@ TagManager:
   - Tower
   - Range
   - bullet
+  - endpoint
   layers:
   - Default
   - TransparentFX
