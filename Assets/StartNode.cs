@@ -39,13 +39,30 @@ public class StartNode : PathNode
             travelDist += rover.distBetween;
             rover = rover.next;
         }
+        return NodeLerp(rover, (dist - travelDist) / rover.distBetween);
 
-        if (rover.next != null)
+    }
+
+    //much better and sexier position function
+    public Vector2 PosOnPath(float dist, ref float nodeDist, ref PathNode node)
+    {
+        if (nodeDist >= node.distBetween && node.next != null)
         {
-            return Vector2.Lerp(rover.transform.position, rover.next.transform.position, (dist - travelDist)/ rover.distBetween);
+            //assign new parent node
+            nodeDist -= node.distBetween;
+            node = node.next;
+        }
+        return NodeLerp(node, nodeDist / node.distBetween);
+    }
+
+    public Vector2 NodeLerp(PathNode node, float t)
+    {
+        if (node.next != null)
+        {
+            return Vector2.Lerp(node.transform.position, node.next.transform.position, t);
         } else
         {
-            return rover.transform.position;
+            return node.transform.position;
         }
     }
 
