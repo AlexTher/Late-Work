@@ -8,6 +8,10 @@ TagManager:
   - Tower
   - Range
   - bullet
+  - PlacementPoint
+  - TowerOne
+  - TowerTwo
+  - TowerThree
   layers:
   - Default
   - TransparentFX
