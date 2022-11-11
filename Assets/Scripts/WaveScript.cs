@@ -7,6 +7,7 @@ public class WaveScript : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     public List<GameObject> enemyTypes; //fill this list in inspector with enemy types
+    public List<GameObject> spawnedEnemies; //destroyed enemies are removed every frame
 
     public StartNode startNode; //set this in inspector
     void Start()
@@ -27,8 +28,8 @@ public class WaveScript : MonoBehaviour
     private IEnumerator Wave1() {
         int EnemiesToSpawn = 20;
         while (EnemiesToSpawn > 0) {
-            Instantiate(enemyTypes[0]);
-
+            
+            spawnedEnemies.Add(Instantiate(enemyTypes[0]));
             yield return new WaitForSeconds(.5f);
         }
     }
