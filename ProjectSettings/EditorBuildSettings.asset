@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JeremyShop.unity
     guid: b24e48741c4cb924c842c4cef1ffa264
+  - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 5af2b68c1d194b74c8ee78c917557aa3
+  - enabled: 1
+    path: Assets/Scenes/StoryScene.unity
+    guid: 13e182f72a5eecb4eb05c07a2a187217
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 469dd0b3b82624e499f31d11ae06a919
   m_configObjects: {}
