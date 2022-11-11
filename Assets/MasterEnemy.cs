@@ -36,7 +36,6 @@ public class MasterEnemy : MonoBehaviour
     void Update()
     {
         float distanceAdded = speed * Time.deltaTime;
-        print(distanceAdded);
         distanceTraveled += distanceAdded;
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
