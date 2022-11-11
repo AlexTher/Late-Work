@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementPointsList: []
-  towerOne: {fileID: 7248370923128431695, guid: 6b9fc24dc86620643a0a57f334696c62, type: 3}
+  towerOne: {fileID: 7248370923128431695, guid: efa5a5e8f0e19e64385201915618055f, type: 3}
   towerTwo: {fileID: 7248370923128431695, guid: 6b9fc24dc86620643a0a57f334696c62, type: 3}
   towerThree: {fileID: 7248370923128431695, guid: 6b9fc24dc86620643a0a57f334696c62, type: 3}
   placeTower: 0
