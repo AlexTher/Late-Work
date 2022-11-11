@@ -38,10 +38,18 @@ public class SpawnEnemy : MonoBehaviour
     {
         
     }
+<<<<<<< HEAD:Assets/SpawnEnemy.cs
     /*
     IEnumerator spawn(){
         if(isspawn){
 
         }
     }*/
+=======
+    //IEnumerator spawn(){
+    //    if(isspawn){
+
+    //    }
+    //}
+>>>>>>> main:Assets/Scripts/SpawnEnemy.cs
 }
