@@ -39,10 +39,9 @@ public class SpawnEnemy : MonoBehaviour
     {
         
     }
-    IEnumerator spawn(){
-        if(isspawn){
+    //IEnumerator spawn(){
+    //    if(isspawn){
 
-        }
-    }
-    */
+    //    }
+    //}
 }
