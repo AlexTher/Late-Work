@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8207142593195190426}
   - component: {fileID: 3968502876181861534}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: monkye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7248370923128431680}
   - component: {fileID: 8697583649920994984}
   - component: {fileID: 4315208920092967434}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tower
   m_TagString: Tower
   m_Icon: {fileID: 0}

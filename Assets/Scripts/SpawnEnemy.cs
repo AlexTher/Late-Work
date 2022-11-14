@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class SpawnEnemy : MonoBehaviour
 {
     bool isspawn = true;
     public DummyEnemy enem;
-    /*
+    
     public void OnTriggerEnter2D(Collider2D enemy) {
         if (enemy.tag == "Enemy") {
             target = enemy.GetComponent<DummyEnemy>();
@@ -26,7 +26,7 @@ public class SpawnEnemy : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         isFiring = false;
     }
-    */
+    s
     // Start is called before the first frame update
     void Start()
     {
@@ -44,3 +44,4 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 }
+*/
