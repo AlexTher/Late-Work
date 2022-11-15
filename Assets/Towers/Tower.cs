@@ -26,6 +26,8 @@ public class Tower : MonoBehaviour
         
     }
 
+    //add willdie to enemy. tower won't target that enemy anymore
+
     public void OnTriggerEnter2D(Collider2D enemy) {
         if (enemy.tag == "Enemy") {
             target = enemy.GetComponent<DummyEnemy>();
@@ -38,6 +40,7 @@ public class Tower : MonoBehaviour
         }
     }
 
+    //private bool ValidTarget(DummyEnemy enemy) {}
     private IEnumerator Shoot() {
         //Projectile projectile = projectile.SpawnProjectile(this);
         isFiring = true;
