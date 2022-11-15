@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    /*
     bool isspawn = true;
     public DummyEnemy enem;
-    /*
+    
     public void OnTriggerEnter2D(Collider2D enemy) {
         if (enemy.tag == "Enemy") {
             target = enemy.GetComponent<DummyEnemy>();
@@ -26,7 +27,7 @@ public class SpawnEnemy : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         isFiring = false;
     }
-    */
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -38,9 +39,19 @@ public class SpawnEnemy : MonoBehaviour
     {
         
     }
+<<<<<<< HEAD
     //IEnumerator spawn(){
     //    if(isspawn){
 
     //    }
     //}
+=======
+    /*
+    IEnumerator spawn(){
+        if(isspawn){
+
+    //    }
+    //}
+    */
+>>>>>>> main
 }

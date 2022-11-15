@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class StartButtonScript : MonoBehaviour
+
+public class RestartButtonScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void StartGame()
+    public void RestartGame()
     {
-     SceneManager.LoadScene("StoryScene");   
+        SceneManager.LoadScene("TitleScene");
     }
 }

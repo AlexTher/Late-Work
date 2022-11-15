@@ -12,9 +12,9 @@ public class Tower : MonoBehaviour
     public float fireRate;
 
     public Projectile projectile;
-    public DummyEnemy target; //current target
+    public MasterEnemy target; //current target
 
-    private List<DummyEnemy> targets; //all targets in range
+    private List<MasterEnemy> targets; //all targets in range
 
     private bool isFiring;
     void Start()
@@ -29,8 +29,9 @@ public class Tower : MonoBehaviour
     //add willdie to enemy. tower won't target that enemy anymore
 
     public void OnTriggerEnter2D(Collider2D enemy) {
+        print(enemy.tag);
         if (enemy.tag == "Enemy") {
-            target = enemy.GetComponent<DummyEnemy>();
+            target = enemy.GetComponent<MasterEnemy>();
         }
     }
 
