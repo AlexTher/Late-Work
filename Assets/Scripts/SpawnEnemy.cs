@@ -39,13 +39,6 @@ public class SpawnEnemy : MonoBehaviour
     {
         
     }
-<<<<<<< HEAD
-    //IEnumerator spawn(){
-    //    if(isspawn){
-
-    //    }
-    //}
-=======
     /*
     IEnumerator spawn(){
         if(isspawn){
@@ -53,5 +46,4 @@ public class SpawnEnemy : MonoBehaviour
     //    }
     //}
     */
->>>>>>> main
 }

@@ -16,11 +16,11 @@ public class WaveScript : MonoBehaviour
             enemyTypes = new List<GameObject>();
         }
         foreach (GameObject enemy in enemyTypes) {
-            DummyEnemy enemyScript = enemy.GetComponent<DummyEnemy>();
+            MasterEnemy enemyScript = enemy.GetComponent<MasterEnemy>();
             if (enemyScript != null) {
                 enemyScript.start = startNode;
             }
-            else Debug.Log("couldn't get DummyEnemy script. this script needs to be fixed to work with other enemyscript types");
+            else Debug.Log("couldn't get enemy script");
         }
         StartCoroutine(Wave1());
     }
