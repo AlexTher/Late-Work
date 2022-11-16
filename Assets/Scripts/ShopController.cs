@@ -100,6 +100,9 @@ public class ShopController : MonoBehaviour
                 GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
             }
         }
-
+    }
+    void enemyKilledAddCurr(int curr)
+    {
+        currency += curr;
     }
 }
