@@ -14,6 +14,7 @@ public class MasterEnemy : MonoBehaviour
     public float speed;
     int points = 0;
 
+    public static float globalSpeedMod = 1f;
     public void OnHit(float damageDealt)
     {
         health -= damageDealt;
@@ -35,7 +36,7 @@ public class MasterEnemy : MonoBehaviour
 
     void Update()
     {
-        float distanceAdded = speed * Time.deltaTime;
+        float distanceAdded = speed * globalSpeedMod * Time.deltaTime;
         distanceTraveled += distanceAdded;
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
