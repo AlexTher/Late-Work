@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ShopController : MonoBehaviour
     public GameObject towerThree;
     public bool placeTower = false;
     private GameObject t;
-    public int currency = 100;
+    public int currency;
     public int baseCost = 10;
     private GameObject tower;
     public Ray ray;
@@ -19,7 +20,8 @@ public class ShopController : MonoBehaviour
     //public Text textCurrency;
     void Start()
     {
-
+        //textCurrency = textPrefab.GetComponent<Text>();
+        currency = 100;
     }
 
     void Update()
@@ -30,15 +32,21 @@ public class ShopController : MonoBehaviour
             hit = Physics2D.Raycast(ray.origin, ray.direction);
             if (hit)
             {
-                Debug.Log("Hit");
-                if (hit.collider.CompareTag("TowerOne")) {
+                if (hit.collider.CompareTag("TowerOne"))
+                {
                     towerOneButton();
-                    Debug.Log("TwoerOne");
+                    // Debug.Log("TowerOne");
                 }
                 if (hit.collider.CompareTag("TowerTwo"))
+                {
                     towerTwoButton(hit.collider.gameObject);
+                    //Debug.Log("TowerTwo");
+                }
                 if (hit.collider.CompareTag("TowerThree"))
+                {
                     towerThreeButton(hit.collider.gameObject);
+                    //Debug.Log("TowerThree");
+                }
             }
         }
         if (placeTower)
@@ -46,12 +54,13 @@ public class ShopController : MonoBehaviour
 
             placeATower(tower);
         }
-        //textCurrency.text = "Currency = " + currency.ToString();
+
+        // textCurrency.text = "Currency = " + currency.ToString();
     }
 
     public void towerOneButton()
     {
-        if (currency > (baseCost * 1))
+        if (currency >= (baseCost * 1))
         {
             currency -= (baseCost * 1);
             placeTower = true;
@@ -61,9 +70,9 @@ public class ShopController : MonoBehaviour
 
     public void towerTwoButton(GameObject t)
     {
-        if (currency > (baseCost * 1))
+        if (currency >= (baseCost * 2))
         {
-            currency -= (baseCost * 1);
+            currency -= (baseCost * 2);
             placeTower = true;
             tower = towerTwo;
         }
@@ -71,9 +80,9 @@ public class ShopController : MonoBehaviour
 
     public void towerThreeButton(GameObject t)
     {
-        if (currency > (baseCost * 1))
+        if (currency >= (baseCost * 3))
         {
-            currency -= (baseCost * 1);
+            currency -= (baseCost * 3);
             placeTower = true;
             tower = towerThree;
         }
@@ -84,9 +93,11 @@ public class ShopController : MonoBehaviour
         {
             if (hit.collider.CompareTag("PlacementPoint"))
             {
-                Debug.Log("PlacementPoint");
-                Instantiate(t, new Vector3(hit.point.x,hit.point.y,0f), Quaternion.identity);
+                //Debug.Log("PlacementPoint");
+                Instantiate(t, new Vector3(hit.point.x, hit.point.y, 0f), Quaternion.identity);
                 placeTower = false;
+                GameObject.Destroy(hit.transform.gameObject);
+                GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
             }
         }
 
