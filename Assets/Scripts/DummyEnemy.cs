@@ -29,12 +29,16 @@ public class DummyEnemy : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.tag == "bullet"){
-            isHit(enemy);
+            Projectile hitProjectile = collider.GetComponent<Projectile>();
+            if (hitProjectile != null) {
+                hitProjectile.HitEnemy();
+            }
+            isHit();
         }
 
-    void isHit(GameObject obj){
+    void isHit(){
 		health-=1;
-		isDead(obj);
+		isDead(enemy);
 		}
     }
 
