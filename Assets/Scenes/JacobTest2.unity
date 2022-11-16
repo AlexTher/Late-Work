@@ -1239,7 +1239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypes:
+  - {fileID: 8091778180138300712, guid: c721e34c29f87884fbe3f246a9900b18, type: 3}
   - {fileID: 5033156639301996313, guid: a8aeec8a92f1e73449e1a9b74c0c388b, type: 3}
+  - {fileID: 347332010883013369, guid: afef42ad44b5d714a9ebff24641fa2af, type: 3}
   spawnedEnemies: []
   startNode: {fileID: 1902072321}
 --- !u!4 &1640409971
