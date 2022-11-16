@@ -7,17 +7,24 @@ public class Projectile : MonoBehaviour
     private GameObject target;
     private Tower parent;
 
+    //public float health;
 
     void Update()
     {
         MoveToTarget();
     }
 
-    void OnTriggerEnter2D(Collider2D collider){
-        if(collider.gameObject.tag == "Enemy"){
-            Destroy(this.gameObject);
-        }
+   // void OnTriggerEnter2D(Collider2D collider){
+    //    if(collider.gameObject.tag == "Enemy"){
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
+    //called by enemy
+    public void HitEnemy() {
+        Destroy(this.gameObject);
     }
+    
 
 
     //called by tower
