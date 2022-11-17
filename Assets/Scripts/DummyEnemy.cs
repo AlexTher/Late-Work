@@ -36,6 +36,11 @@ public class DummyEnemy : MonoBehaviour
             isHit();
         }
 
+        if(collider.gameObject.tag == "endpoint"){
+            Destroy(this.gameObject);
+            HealthUI.lives=HealthUI.lives-1;
+        }
+
     void isHit(){
 		health-=1;
 		isDead(enemy);

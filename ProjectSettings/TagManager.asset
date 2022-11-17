@@ -12,6 +12,7 @@ TagManager:
   - TowerOne
   - TowerTwo
   - TowerThree
+  - endpoint
   layers:
   - Default
   - TransparentFX
