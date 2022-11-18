@@ -8,8 +8,11 @@ public class HornBoss : MonoBehaviour
     public AudioSource evil_laugh;
 
     public Animator animator;
-    public float countDownLength = 10f;
-    private float countDown;
+    public float activationTime = 10f;
+    [SerializeField]private float activationCountDown;
+    public float buffTime = 10f;
+    private float buffCountUp = 0;
+    private bool hornActivated = false;
 
     public void PlayColdOne()
     {
@@ -20,6 +23,7 @@ public class HornBoss : MonoBehaviour
     {
         evil_laugh.Play();
         MasterEnemy.globalSpeedMod = 2f;
+        hornActivated = true;
     }
 
     public void StartHorn()
@@ -30,17 +34,26 @@ public class HornBoss : MonoBehaviour
 
     private void Update()
     {
-        countDown -= Time.deltaTime;
-        if (countDown < 0)
+        activationCountDown -= Time.deltaTime;
+        if (hornActivated) 
+            buffCountUp += Time.deltaTime;
+
+        if (activationCountDown < 0)
         {
             StartHorn();
-            countDown = countDownLength;
+            activationCountDown = activationTime;
+        }
+        if (buffCountUp > buffTime)
+        {
+            buffCountUp = 0;
+            MasterEnemy.globalSpeedMod = 1f;
+            hornActivated = false;
         }
     }
 
     private void Start()
     {
-        countDown = countDownLength;
+        activationCountDown = activationTime;
 
 
     }
