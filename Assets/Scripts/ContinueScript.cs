@@ -18,7 +18,7 @@ public class ContinueScript : MonoBehaviour
         TMPtext.text = arr[place];
         place++;
         if(place >= arr.Length){
-            SceneManager.LoadScene("JeremyShop");
+            SceneManager.LoadScene("JacobAndJeremyComb");
         }
     }
 }
