@@ -14,6 +14,8 @@ public class MasterEnemy : MonoBehaviour
     public float speed;
     int points = 0;
 
+    private bool dead = false;
+
     public static float globalSpeedMod = 1f;
     public void OnHit(float damageDealt)
     {
@@ -40,5 +42,33 @@ public class MasterEnemy : MonoBehaviour
         distanceTraveled += distanceAdded;
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.tag == "bullet"){
+            Projectile hitProjectile = collider.GetComponent<Projectile>();
+            if (hitProjectile != null) {
+                hitProjectile.HitEnemy();
+            }
+            isHit();
+        }
+
+        if(collider.gameObject.tag == "endpoint"){
+            Destroy(this.gameObject);
+            HealthUI.lives=HealthUI.lives-1;
+        }
+
+    void isHit(){
+		health-=1;
+		isDead();
+		}
+    }
+
+    void isDead(){
+        if(health <= 0){
+            dead = true;
+            points++;
+            Destroy(this.gameObject); //might need to destroy clone instead
+        }
     }
 }
