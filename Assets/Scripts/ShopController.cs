@@ -17,10 +17,9 @@ public class ShopController : MonoBehaviour
     private GameObject tower;
     public Ray ray;
     public RaycastHit2D hit;
-    //public Text textCurrency;
+
     void Start()
     {
-        //textCurrency = textPrefab.GetComponent<Text>();
         currency = 100;
     }
 
@@ -35,17 +34,14 @@ public class ShopController : MonoBehaviour
                 if (hit.collider.CompareTag("TowerOne"))
                 {
                     towerOneButton();
-                    // Debug.Log("TowerOne");
                 }
                 if (hit.collider.CompareTag("TowerTwo"))
                 {
                     towerTwoButton(hit.collider.gameObject);
-                    //Debug.Log("TowerTwo");
                 }
                 if (hit.collider.CompareTag("TowerThree"))
                 {
                     towerThreeButton(hit.collider.gameObject);
-                    //Debug.Log("TowerThree");
                 }
             }
         }
@@ -54,8 +50,7 @@ public class ShopController : MonoBehaviour
 
             placeATower(tower);
         }
-
-        // textCurrency.text = "Currency = " + currency.ToString();
+        GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
     }
 
     public void towerOneButton()
@@ -93,16 +88,15 @@ public class ShopController : MonoBehaviour
         {
             if (hit.collider.CompareTag("PlacementPoint"))
             {
-                //Debug.Log("PlacementPoint");
                 Instantiate(t, new Vector3(hit.point.x, hit.point.y, 0f), Quaternion.identity);
                 placeTower = false;
                 GameObject.Destroy(hit.transform.gameObject);
-                GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
             }
         }
     }
-    void enemyKilledAddCurr(int curr)
+    public void enemyKilledAddCurr(int curr)
     {
+        Debug.Log(currency + " enemyKilledAddCurr is called");
         currency += curr;
     }
 }

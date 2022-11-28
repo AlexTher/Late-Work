@@ -14,6 +14,8 @@ public class MasterEnemy : MonoBehaviour
     public float speed;
     int points = 0;
 
+    private ShopController shopController;
+
     private bool dead = false;
 
     public static float globalSpeedMod = 1f;
@@ -27,6 +29,9 @@ public class MasterEnemy : MonoBehaviour
              * possibly have a master player class 
              * that has health, points, and currency all in one
              */
+
+            
+
             Destroy(this);
         }
     }
@@ -60,7 +65,7 @@ public class MasterEnemy : MonoBehaviour
 
     void isHit(){
 		health-=1;
-		isDead();
+        isDead();
 		}
     }
 
@@ -68,6 +73,8 @@ public class MasterEnemy : MonoBehaviour
         if(health <= 0){
             dead = true;
             points++;
+            shopController = FindObjectOfType<ShopController>();
+            shopController.enemyKilledAddCurr(1);
             Destroy(this.gameObject); //might need to destroy clone instead
         }
     }
