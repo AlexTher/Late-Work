@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8207142593195190426}
   - component: {fileID: 3968502876181861534}
-  m_Layer: 0
+  - component: {fileID: 6083763238036371093}
+  m_Layer: 3
   m_Name: monkye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6083763238036371093
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868259536096367751}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &7248370923128431695
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +114,7 @@ GameObject:
   - component: {fileID: 8697583649920994984}
   - component: {fileID: 4315208920092967434}
   - component: {fileID: -3825631212166506624}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vmware
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -195,7 +212,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7248370923128431695}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02dcf3ffaec779744b1b5911abdb459a, type: 3}
   m_Name: 
@@ -208,6 +225,7 @@ MonoBehaviour:
   fireRate: 1
   projectile: {fileID: 4565800876460766936, guid: d3617ad1e9576b049a5aa211163de4c5, type: 3}
   target: {fileID: 0}
+  boundingCollider: {fileID: 6083763238036371093}
 --- !u!50 &-3825631212166506624
 Rigidbody2D:
   serializedVersion: 4
@@ -228,4 +246,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7

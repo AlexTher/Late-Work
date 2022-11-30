@@ -17,6 +17,22 @@ public class Tower : MonoBehaviour
     private List<MasterEnemy> targets; //all targets in range
 
     private bool isFiring;
+
+    public static List<Tower> towers = new List<Tower>();
+    public CircleCollider2D boundingCollider; //kind of a shitty name for what this does but if renamed will undo all assignments \._./
+    private SpriteRenderer towerSprite;
+
+    private void Awake()
+    {
+        towers.Add(this);
+        towerSprite = boundingCollider.GetComponent<SpriteRenderer>();
+    }
+
+    private void OnDestroy()
+    {
+        towers.Remove(this);
+    }
+
     void Start()
     {
         isFiring = false;
@@ -34,9 +50,21 @@ public class Tower : MonoBehaviour
     }
 
     public void OnTriggerStay2D(Collider2D enemy) {
-        if (target != null && !isFiring) {
+        if (target != null && !isFiring && isActiveAndEnabled) {
             StartCoroutine(Shoot());
         }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tower") && !isActiveAndEnabled)
+            towerSprite.color = Color.grey;
+        else
+            towerSprite.color = Color.white;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        towerSprite.color = Color.white;
     }
 
     private IEnumerator Shoot() {

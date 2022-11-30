@@ -24,6 +24,13 @@ public class ShopController : MonoBehaviour
 
     void Update()
     {
+        if (placeTower)
+        {
+            tower.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Input.GetMouseButtonDown(0))
+                placeATower(tower);
+            //placeATower(tower);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,11 +48,6 @@ public class ShopController : MonoBehaviour
                     towerThreeButton(hit.collider.gameObject);
             }
         }
-        if (placeTower)
-        {
-
-            placeATower(tower);
-        }
         //textCurrency.text = "Currency = " + currency.ToString();
     }
 
@@ -55,7 +57,7 @@ public class ShopController : MonoBehaviour
         {
             currency -= (baseCost * 1);
             placeTower = true;
-            tower = towerOne;
+            tower = Instantiate(towerOne, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
     }
 
@@ -65,7 +67,7 @@ public class ShopController : MonoBehaviour
         {
             currency -= (baseCost * 1);
             placeTower = true;
-            tower = towerTwo;
+            tower = Instantiate(towerTwo, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
     }
 
@@ -75,11 +77,12 @@ public class ShopController : MonoBehaviour
         {
             currency -= (baseCost * 1);
             placeTower = true;
-            tower = towerThree;
+            tower = Instantiate(towerThree, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
     }
     void placeATower(GameObject t)
     {
+        /*
         if (hit)
         {
             if (hit.collider.CompareTag("PlacementPoint"))
@@ -88,6 +91,19 @@ public class ShopController : MonoBehaviour
                 Instantiate(t, new Vector3(hit.point.x,hit.point.y,0f), Quaternion.identity);
                 placeTower = false;
             }
+        }*/
+        print("placing");
+        ContactFilter2D contactFilter2D = new()
+        {
+            layerMask = LayerMask.GetMask("Tower")
+        };
+        List<Collider2D> touchingTowers = new();
+        Tower towerComp = tower.GetComponent<Tower>();
+        if (towerComp.boundingCollider.OverlapCollider(contactFilter2D, touchingTowers) == 0)
+        {
+            towerComp.enabled = true;
+            tower = null;
+            placeTower = false;
         }
 
     }
