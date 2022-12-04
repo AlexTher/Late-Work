@@ -15,6 +15,7 @@ public class MasterEnemy : MonoBehaviour
     int points = 0;
 
     private ShopController shopController;
+    private Lives live;
 
     private bool dead = false;
 
@@ -47,6 +48,14 @@ public class MasterEnemy : MonoBehaviour
         distanceTraveled += distanceAdded;
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
+
+        if(distanceTraveled >= 115f && dead == false)
+        {
+            dead = true;
+            live = FindObjectOfType<Lives>();
+            live.Lifecounter();
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider){
