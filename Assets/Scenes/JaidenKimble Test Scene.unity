@@ -1305,7 +1305,7 @@ PrefabInstance:
     - target: {fileID: 8178561280498303448, guid: ddd6b83d958fa174293a7346f02a7f13, type: 3}
       propertyPath: prev
       value: 
-      objectReference: {fileID: 733396994068475586}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddd6b83d958fa174293a7346f02a7f13, type: 3}
 --- !u!1 &1168979939
@@ -1821,7 +1821,9 @@ MonoBehaviour:
   towerThree: {fileID: 7248370923128431695, guid: 6b9fc24dc86620643a0a57f334696c62, type: 3}
   placeTower: 0
   currency: 100
-  baseCost: 10
+  baseCost1: 10
+  baseCost2: 20
+  baseCost3: 30
 --- !u!4 &1803183867
 Transform:
   m_ObjectHideFlags: 0
@@ -2171,17 +2173,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &733396994068475586 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8882569187175969843, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
-  m_PrefabInstance: {fileID: 8171980754658417393}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e4c667f3e029d429687a34588cc878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &733396994068475587 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6010805654453640558, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
@@ -2196,6 +2187,11 @@ MonoBehaviour:
 --- !u!4 &733396994068475588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3465546198821088615, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
+  m_PrefabInstance: {fileID: 8171980754658417393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!68 &733396994068475589 stripped
+EdgeCollider2D:
+  m_CorrespondingSourceObject: {fileID: -4953054872312311572, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
   m_PrefabInstance: {fileID: 8171980754658417393}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2636550548079654889
@@ -2392,6 +2388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 912821716}
     m_Modifications:
+    - target: {fileID: -4953054872312311572, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2642365994457829656, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
       propertyPath: m_Name
       value: HeadNode
@@ -2448,5 +2448,9 @@ PrefabInstance:
       propertyPath: debugLines
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6010805654453640558, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
+      propertyPath: pathCollider
+      value: 
+      objectReference: {fileID: 733396994068475589}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}

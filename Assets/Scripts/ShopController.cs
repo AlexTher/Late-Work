@@ -66,11 +66,7 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
-        if (placeTower)
-        {
 
-            placeATower(tower);
-        }
         GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
         GameObject.Find("TowerOneCost").GetComponent<Text>().text = baseCost1.ToString();
         GameObject.Find("TowerTwoCost").GetComponent<Text>().text = baseCost2.ToString();
@@ -113,34 +109,13 @@ public class ShopController : MonoBehaviour
         {
             if (hit.collider.CompareTag("PlacementPoint"))
             {
-                Instantiate(t, new Vector3(hit.point.x, hit.point.y, 0f), Quaternion.identity);
-                placeTower = false;
-                GameObject.Destroy(hit.transform.gameObject);
-                if(costToChange == 1) {
-                    currency -= (baseCost1);
-                    baseCost1 *= 2f;
-                }
-                if (costToChange == 2)
-                {
-                    currency -= (baseCost2);
-                    baseCost2 *= 2f;
-                }
-                if (costToChange == 3)
-                {
-                    currency -= (baseCost3);
-                    baseCost3 *= 2f;
-                }
-                costToChange = 0;
-            }
-        }
-    }
-    public void enemyKilledAddCurr(int curr)
-    {
-        Debug.Log(currency + " enemyKilledAddCurr is called");
-        currency += curr;
-    }
+                //Instantiate(t, new Vector3(hit.point.x, hit.point.y, 0f), Quaternion.identity);
+                //placeTower = false;
+                //GameObject.Destroy(hit.transform.gameObject);
+
             }
         }*/
+
         print("placing");
         ContactFilter2D contactFilter2D = new()
         {
@@ -153,7 +128,30 @@ public class ShopController : MonoBehaviour
             towerComp.enabled = true;
             tower = null;
             placeTower = false;
+            if (costToChange == 1)
+            {
+                currency -= (baseCost1);
+                baseCost1 *= 2f;
+            }
+            if (costToChange == 2)
+            {
+                currency -= (baseCost2);
+                baseCost2 *= 2f;
+            }
+            if (costToChange == 3)
+            {
+                currency -= (baseCost3);
+                baseCost3 *= 2f;
+            }
+            costToChange = 0;
         }
+    }
+        
+    public void enemyKilledAddCurr(int curr)
+    {
+        Debug.Log(currency + " enemyKilledAddCurr is called");
+        currency += curr;
+    }
 
     public void shopMover()
     {
