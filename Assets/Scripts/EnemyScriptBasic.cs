@@ -9,8 +9,13 @@ public class EnemyScriptBasic : MonoBehaviour
     bool dead = false;
     int points = 0;
     public GameObject enemy;
+    public ShopController shopController;
+    int healthPython = 1;
+
+
     void Start()
     {
+        Debug.Log("ENEMYSCRIPTBASIC");
         //intitalize enemy
     }
     void Update()

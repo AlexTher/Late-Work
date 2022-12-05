@@ -117,7 +117,7 @@ MonoBehaviour:
   start: {fileID: 0}
   nodeDistance: 0
   distanceTraveled: 0
-  health: 5
+  health: 1
   speed: 2
 --- !u!61 &7660945013092692832
 BoxCollider2D:

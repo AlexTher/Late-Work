@@ -12,15 +12,28 @@ public class ShopController : MonoBehaviour
     public GameObject towerThree;
     public bool placeTower = false;
     private GameObject t;
-    public int currency;
-    public int baseCost = 10;
+    public float currency;
+    public float baseCost1 = 10f;
+    public float baseCost2 = 20f;
+    public float baseCost3 = 30f;
     private GameObject tower;
     public Ray ray;
     public RaycastHit2D hit;
-    //public Text textCurrency;
+
+    GameObject background;
+    GameObject button1;
+    GameObject button2;
+    GameObject button3;
+    GameObject cost1;
+    GameObject cost2;
+    GameObject cost3;
+
+    int costToChange = 0;
+
+    int upOrDown = 1;
+
     void Start()
     {
-        //textCurrency = textPrefab.GetComponent<Text>();
         currency = 100;
     }
 
@@ -35,17 +48,14 @@ public class ShopController : MonoBehaviour
                 if (hit.collider.CompareTag("TowerOne"))
                 {
                     towerOneButton();
-                    // Debug.Log("TowerOne");
                 }
                 if (hit.collider.CompareTag("TowerTwo"))
                 {
                     towerTwoButton(hit.collider.gameObject);
-                    //Debug.Log("TowerTwo");
                 }
                 if (hit.collider.CompareTag("TowerThree"))
                 {
                     towerThreeButton(hit.collider.gameObject);
-                    //Debug.Log("TowerThree");
                 }
             }
         }
@@ -54,15 +64,17 @@ public class ShopController : MonoBehaviour
 
             placeATower(tower);
         }
-
-        // textCurrency.text = "Currency = " + currency.ToString();
+        GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
+        GameObject.Find("TowerOneCost").GetComponent<Text>().text = baseCost1.ToString();
+        GameObject.Find("TowerTwoCost").GetComponent<Text>().text = baseCost2.ToString();
+        GameObject.Find("TowerThreeCost").GetComponent<Text>().text = baseCost3.ToString();
     }
 
     public void towerOneButton()
     {
-        if (currency >= (baseCost * 1))
+        if (currency >= (baseCost1))
         {
-            currency -= (baseCost * 1);
+            costToChange = 1;
             placeTower = true;
             tower = towerOne;
         }
@@ -70,9 +82,9 @@ public class ShopController : MonoBehaviour
 
     public void towerTwoButton(GameObject t)
     {
-        if (currency >= (baseCost * 2))
+        if (currency >= (baseCost2))
         {
-            currency -= (baseCost * 2);
+            costToChange = 2;
             placeTower = true;
             tower = towerTwo;
         }
@@ -80,9 +92,9 @@ public class ShopController : MonoBehaviour
 
     public void towerThreeButton(GameObject t)
     {
-        if (currency >= (baseCost * 3))
+        if (currency >= (baseCost3))
         {
-            currency -= (baseCost * 3);
+            costToChange = 3;
             placeTower = true;
             tower = towerThree;
         }
@@ -93,16 +105,63 @@ public class ShopController : MonoBehaviour
         {
             if (hit.collider.CompareTag("PlacementPoint"))
             {
-                //Debug.Log("PlacementPoint");
                 Instantiate(t, new Vector3(hit.point.x, hit.point.y, 0f), Quaternion.identity);
                 placeTower = false;
                 GameObject.Destroy(hit.transform.gameObject);
-                GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
+                if(costToChange == 1) {
+                    currency -= (baseCost1);
+                    baseCost1 *= 2f;
+                }
+                if (costToChange == 2)
+                {
+                    currency -= (baseCost2);
+                    baseCost2 *= 2f;
+                }
+                if (costToChange == 3)
+                {
+                    currency -= (baseCost3);
+                    baseCost3 *= 2f;
+                }
+                costToChange = 0;
             }
         }
     }
-    void enemyKilledAddCurr(int curr)
+    public void enemyKilledAddCurr(int curr)
     {
+        Debug.Log(currency + " enemyKilledAddCurr is called");
         currency += curr;
+    }
+
+    public void shopMover()
+    {
+        upOrDown *= -1;
+        background = GameObject.Find("ShopBackground");
+        button1 = GameObject.Find("TowerOneButton");
+        button2 = GameObject.Find("TowerTwoButton");
+        button3 = GameObject.Find("TowerThreeButton");
+        cost1 = GameObject.Find("TowerOneCost");
+        cost2 = GameObject.Find("TowerTwoCost");
+        cost3 = GameObject.Find("TowerThreeCost");
+
+        if (upOrDown > 0)
+        {
+            background.transform.position = new Vector3(transform.position.x, -4.52f, transform.position.z);
+            button1.transform.position = new Vector3(-4.74f, -4.52f, 10);
+            button2.transform.position = new Vector3(-2.29f, -4.52f, 10);
+            button3.transform.position = new Vector3(0.5f, -4.52f, 10);
+            cost1.GetComponent<RectTransform>().localPosition = new Vector3(-169, -207f, 0);
+            cost2.GetComponent<RectTransform>().localPosition = new Vector3(-58, -207f, 0);
+            cost3.GetComponent<RectTransform>().localPosition = new Vector3(68, -207f, 0);
+        }
+        else
+        {
+            background.transform.position = new Vector3(0, -54.52f, 0);
+            button1.transform.position = new Vector3(0, -54.52f, 0);
+            button2.transform.position = new Vector3(0, -54.52f, 0);
+            button3.transform.position = new Vector3(0, -54.52f, 0);
+            cost1.GetComponent<RectTransform>().localPosition = new Vector3(-169, -307f, 0);
+            cost2.GetComponent<RectTransform>().localPosition = new Vector3(-58, -307f, 0);
+            cost3.GetComponent<RectTransform>().localPosition = new Vector3(68, -307f, 0);
+        }
     }
 }
