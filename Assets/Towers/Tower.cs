@@ -42,6 +42,8 @@ public class Tower : MonoBehaviour
         
     }
 
+    //add willdie to enemy. tower won't target that enemy anymore
+
     public void OnTriggerEnter2D(Collider2D enemy) {
         print(enemy.tag);
         if (enemy.tag == "Enemy") {
@@ -67,6 +69,7 @@ public class Tower : MonoBehaviour
         towerSprite.color = Color.white;
     }
 
+    //private bool ValidTarget(DummyEnemy enemy) {}
     private IEnumerator Shoot() {
         //Projectile projectile = projectile.SpawnProjectile(this);
         isFiring = true;

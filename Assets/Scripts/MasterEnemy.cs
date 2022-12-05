@@ -14,6 +14,11 @@ public class MasterEnemy : MonoBehaviour
     public float speed;
     int points = 0;
 
+    private ShopController shopController;
+    private Lives live;
+
+    private bool dead = false;
+
     public static float globalSpeedMod = 1f;
     public void OnHit(float damageDealt)
     {
@@ -25,6 +30,9 @@ public class MasterEnemy : MonoBehaviour
              * possibly have a master player class 
              * that has health, points, and currency all in one
              */
+
+            
+
             Destroy(this);
         }
     }
@@ -40,5 +48,43 @@ public class MasterEnemy : MonoBehaviour
         distanceTraveled += distanceAdded;
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
+
+        if(distanceTraveled >= 115f && dead == false)
+        {
+            dead = true;
+            live = FindObjectOfType<Lives>();
+            live.Lifecounter();
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        if(collider.gameObject.tag == "bullet"){
+            Projectile hitProjectile = collider.GetComponent<Projectile>();
+            if (hitProjectile != null) {
+                hitProjectile.HitEnemy();
+            }
+            isHit();
+        }
+
+        if(collider.gameObject.tag == "endpoint"){
+            Destroy(this.gameObject);
+            HealthUI.lives=HealthUI.lives-1;
+        }
+
+    void isHit(){
+		health-=1;
+        isDead();
+		}
+    }
+
+    void isDead(){
+        if(health <= 0){
+            dead = true;
+            points++;
+            shopController = FindObjectOfType<ShopController>();
+            shopController.enemyKilledAddCurr(1);
+            Destroy(this.gameObject); //might need to destroy clone instead
+        }
     }
 }

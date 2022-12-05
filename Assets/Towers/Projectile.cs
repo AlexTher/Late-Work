@@ -7,17 +7,24 @@ public class Projectile : MonoBehaviour
     private GameObject target;
     private Tower parent;
 
+    //public float health;
 
     void Update()
     {
         MoveToTarget();
     }
 
-    void OnTriggerEnter2D(Collider2D collider){
-        if(collider.gameObject.tag == "Enemy"){
-            Destroy(this.gameObject);
-        }
+   // void OnTriggerEnter2D(Collider2D collider){
+    //    if(collider.gameObject.tag == "Enemy"){
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
+    //called by enemy
+    public void HitEnemy() {
+        Destroy(this.gameObject);
     }
+    
 
 
     //called by tower
@@ -27,10 +34,19 @@ public class Projectile : MonoBehaviour
         newProj.target = newTarget;
     }
     private void MoveToTarget() {
-        if (target != null && parent != null) {
+        if (parent != null) {
+            if (target != null) {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.projectileSpeed);
+            }
+            else {
+                if (parent.target != null) {
+                    target = parent.target.gameObject;
+                }
+                if (target == null) {
+                    //maybe only destroy them if outside of tower range. that requires too much thinking though
+                    Destroy(this.gameObject);
+                }
+            }
         }
     }
-
-    
 }
