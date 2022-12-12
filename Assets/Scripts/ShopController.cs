@@ -57,13 +57,13 @@ public class ShopController : MonoBehaviour
                 {
                     towerOneButton();
                 }
-                if (hit.collider.CompareTag("TowerTwo"))
+                else if (hit.collider.CompareTag("TowerTwo"))
                 {
-                    towerTwoButton(hit.collider.gameObject);
+                    towerTwoButton();
                 }
-                if (hit.collider.CompareTag("TowerThree"))
+                else if(hit.collider.CompareTag("TowerThree"))
                 {
-                    towerThreeButton(hit.collider.gameObject);
+                    towerThreeButton();
                 }
             }
         }
@@ -84,7 +84,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void towerTwoButton(GameObject t)
+    public void towerTwoButton()
     {
         if (currency >= (baseCost2))
         {
@@ -94,7 +94,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void towerThreeButton(GameObject t)
+    public void towerThreeButton()
     {
         if (currency >= (baseCost3))
         {

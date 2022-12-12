@@ -17,6 +17,7 @@ TagManager:
   - TowerOneCost
   - TowerTwoCost
   - TowerThreeCost
+  - LifeText
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Tower
   - Water
   - UI
-  - 
+  - Placers
   - 
   - 
   - 
