@@ -226,6 +226,7 @@ MonoBehaviour:
   projectile: {fileID: 4565800876460766936, guid: a0788d1a022f1ca488e11efef67134dc, type: 3}
   target: {fileID: 0}
   boundingCollider: {fileID: 1303902863360974650}
+  ShootingAudio: {fileID: 0}
 --- !u!50 &-3825631212166506624
 Rigidbody2D:
   serializedVersion: 4

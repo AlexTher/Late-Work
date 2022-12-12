@@ -9,6 +9,7 @@ public class Lives : MonoBehaviour
 {
     public int lifeint = 5;
     string lifeLevel = "A";
+    public AudioSource tookdamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +49,6 @@ public class Lives : MonoBehaviour
     public void Lifecounter()
     {
         lifeint -= 1;
+        tookdamage.Play();
     }
 }
