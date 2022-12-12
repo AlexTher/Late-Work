@@ -20,6 +20,7 @@ public class MasterEnemy : MonoBehaviour
     private bool dead = false;
 
     public static float globalSpeedMod = 1f;
+    public AudioSource enemydead;
     public void OnHit(float damageDealt)
     {
         health -= damageDealt;
@@ -49,7 +50,7 @@ public class MasterEnemy : MonoBehaviour
         nodeDistance += distanceAdded;
         transform.position = start.PosOnPath(distanceTraveled, ref nodeDistance, ref parentNode);
 
-        if(distanceTraveled >= 115f && dead == false)
+        if(distanceTraveled >= 81f && dead == false)
         {
             dead = true;
             live = FindObjectOfType<Lives>();
@@ -81,6 +82,8 @@ public class MasterEnemy : MonoBehaviour
     void isDead(){
         if(health <= 0){
             dead = true;
+            enemydead = GameObject.Find("KillEnemyAudio").GetComponent<AudioSource>();
+            enemydead.Play();
             points++;
             shopController = FindObjectOfType<ShopController>();
             shopController.enemyKilledAddCurr(1);

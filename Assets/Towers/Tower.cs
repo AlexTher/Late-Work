@@ -21,6 +21,7 @@ public class Tower : MonoBehaviour
     public static List<Tower> towers = new List<Tower>();
     public CircleCollider2D boundingCollider; //kind of a shitty name for what this does but if renamed will undo all assignments \._./
     private SpriteRenderer towerSprite;
+    public AudioSource ShootingAudio;
 
     private void Awake()
     {
@@ -74,6 +75,8 @@ public class Tower : MonoBehaviour
         //Projectile projectile = projectile.SpawnProjectile(this);
         isFiring = true;
         projectile.SpawnProjectile(this, target.gameObject);
+        ShootingAudio = GameObject.Find("ShootAudio").GetComponent<AudioSource>();
+        ShootingAudio.Play();
         yield return new WaitForSeconds(fireRate);
         isFiring = false;
     }
