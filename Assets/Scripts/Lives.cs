@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Lives : MonoBehaviour
 {
@@ -17,29 +18,29 @@ public class Lives : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject.Find("LifeText").GetComponent<Text>().text = lifeLevel;
+        GameObject.Find("LifeText").GetComponent<TMPro.TextMeshProUGUI>().text = lifeLevel;
         if (lifeint == 5)
         {
-            GameObject.Find("LifeText").GetComponent<Text>().color = Color.green;
-            lifeLevel = "A";
+            GameObject.Find("LifeText").GetComponent<TMPro.TextMeshProUGUI>().color = Color.green;
+            lifeLevel = "Grade: A";
         }
         else if (lifeint == 4)
         {
-            lifeLevel = "B";
+            lifeLevel = "Grade: B";
         }
         else if (lifeint == 3)
         {
-            GameObject.Find("LifeText").GetComponent<Text>().color = Color.yellow;
-            lifeLevel = "C";
+            GameObject.Find("LifeText").GetComponent<TMPro.TextMeshProUGUI>().color = Color.yellow;
+            lifeLevel = "Grade: C";
         }
         else if (lifeint == 2)
         {
-            GameObject.Find("LifeText").GetComponent<Text>().color = Color.red;
-            lifeLevel = "D";
+            GameObject.Find("LifeText").GetComponent<TMPro.TextMeshProUGUI>().color = Color.red;
+            lifeLevel = "Grade: D";
         }
         else if (lifeint == 1)
         {
-            lifeLevel = "F";
+            lifeLevel = "Grade: F";
             SceneManager.LoadScene("EndScene");
         }
     }
