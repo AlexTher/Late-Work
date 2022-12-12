@@ -14,12 +14,9 @@ public class MasterEnemy : MonoBehaviour
     public float speed;
     int points = 0;
 
-<<<<<<< HEAD
-=======
     private ShopController shopController;
     private Lives live;
 
->>>>>>> main
     private bool dead = false;
 
     public static float globalSpeedMod = 1f;
@@ -87,34 +84,6 @@ public class MasterEnemy : MonoBehaviour
             points++;
             shopController = FindObjectOfType<ShopController>();
             shopController.enemyKilledAddCurr(1);
-            Destroy(this.gameObject); //might need to destroy clone instead
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider){
-        if(collider.gameObject.tag == "bullet"){
-            Projectile hitProjectile = collider.GetComponent<Projectile>();
-            if (hitProjectile != null) {
-                hitProjectile.HitEnemy();
-            }
-            isHit();
-        }
-
-        if(collider.gameObject.tag == "endpoint"){
-            Destroy(this.gameObject);
-            HealthUI.lives=HealthUI.lives-1;
-        }
-
-    void isHit(){
-		health-=1;
-		isDead();
-		}
-    }
-
-    void isDead(){
-        if(health <= 0){
-            dead = true;
-            points++;
             Destroy(this.gameObject); //might need to destroy clone instead
         }
     }
