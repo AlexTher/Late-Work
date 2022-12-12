@@ -47,6 +47,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8940419556754734681}
     m_Modifications:
+    - target: {fileID: -4953054872312311572, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2642365994457829656, guid: 0dc8cca614aff4f4db83a84b30b227c8, type: 3}
       propertyPath: m_Name
       value: HeadNode
