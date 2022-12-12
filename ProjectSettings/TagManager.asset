@@ -13,6 +13,10 @@ TagManager:
   - TowerTwo
   - TowerThree
   - endpoint
+  - CurrencyText
+  - TowerOneCost
+  - TowerTwoCost
+  - TowerThreeCost
   layers:
   - Default
   - TransparentFX
