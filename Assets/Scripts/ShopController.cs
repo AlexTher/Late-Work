@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ShopController : MonoBehaviour
 {
@@ -68,9 +69,9 @@ public class ShopController : MonoBehaviour
         }
 
         GameObject.Find("CurrencyText").GetComponent<Text>().text = "Currency = " + currency.ToString();
-        GameObject.Find("TowerOneCost").GetComponent<Text>().text = baseCost1.ToString();
-        GameObject.Find("TowerTwoCost").GetComponent<Text>().text = baseCost2.ToString();
-        GameObject.Find("TowerThreeCost").GetComponent<Text>().text = baseCost3.ToString();
+        GameObject.Find("TowerOneCost").GetComponent<TMPro.TextMeshProUGUI>().text = baseCost1.ToString();
+        GameObject.Find("TowerTwoCost").GetComponent<TMPro.TextMeshProUGUI>().text = baseCost2.ToString();
+        GameObject.Find("TowerThreeCost").GetComponent<TMPro.TextMeshProUGUI>().text = baseCost3.ToString();
     }
 
     public void towerOneButton()

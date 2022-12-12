@@ -48,6 +48,7 @@ MonoBehaviour:
   next: {fileID: 0}
   distBetween: 0
   debugLines: 1
+  pathCollider: {fileID: -4953054872312311572}
 --- !u!68 &-4953054872312311572
 EdgeCollider2D:
   m_ObjectHideFlags: 0
