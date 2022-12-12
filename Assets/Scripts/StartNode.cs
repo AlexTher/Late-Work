@@ -10,6 +10,8 @@ public class StartNode : PathNode
 
     public float totalDistance { get; private set; }
 
+    public EdgeCollider2D pathCollider;
+
     //use this function to (re)calculate the distances along the path
     public float CalculateDistances()
     {
@@ -68,6 +70,7 @@ public class StartNode : PathNode
 
     private void Start()
     {
+        pathCollider.offset = -transform.position;
         if (!IsSafe())
         {
             print("Infinite loop in " + name + ", killing path.");
@@ -112,11 +115,15 @@ public class StartNode : PathNode
     {
         int safetyCounter = 0;
         PathNode rover = this;
+        List<Vector2> points = new();
         while (rover.next != end && safetyCounter < 999)
         {
             safetyCounter++;
+            points.Add(rover.transform.position);
             rover = rover.next;
         }
+        points.Add(rover.transform.position);
+        pathCollider.SetPoints(points);
         return safetyCounter < 999;
     }
 
