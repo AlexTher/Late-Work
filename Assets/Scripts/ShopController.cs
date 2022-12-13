@@ -61,18 +61,18 @@ public class ShopController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("TowerOne"))
                 {
-                    towerOneButton();
                     twrselect.Play();
+                    towerOneButton();
                 }
                 else if (hit.collider.CompareTag("TowerTwo"))
                 {
-                    towerTwoButton();
                     twrselect.Play();
+                    towerTwoButton();
                 }
                 else if(hit.collider.CompareTag("TowerThree"))
                 {
-                    towerThreeButton();
                     twrselect.Play();
+                    towerThreeButton();
                 }
             }
         }
