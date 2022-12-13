@@ -20,6 +20,9 @@ public class ShopController : MonoBehaviour
     private GameObject tower;
     public Ray ray;
     public RaycastHit2D hit;
+    public AudioSource twrselect;
+    public AudioSource twrplace;
+    public AudioSource twrerror;
 
     GameObject background;
     GameObject button1;
@@ -36,6 +39,9 @@ public class ShopController : MonoBehaviour
     void Start()
     {
         currency = 100;
+        twrplace = GameObject.Find("PlacingTowers").GetComponent<AudioSource>();
+        twrselect = GameObject.Find("SelectingTower").GetComponent<AudioSource>();
+        twrerror = GameObject.Find("ErrorNoise").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -56,14 +62,17 @@ public class ShopController : MonoBehaviour
                 if (hit.collider.CompareTag("TowerOne"))
                 {
                     towerOneButton();
+                    twrselect.Play();
                 }
                 else if (hit.collider.CompareTag("TowerTwo"))
                 {
                     towerTwoButton();
+                    twrselect.Play();
                 }
                 else if(hit.collider.CompareTag("TowerThree"))
                 {
                     towerThreeButton();
+                    twrselect.Play();
                 }
             }
         }
@@ -129,6 +138,7 @@ public class ShopController : MonoBehaviour
             towerComp.enabled = true;
             tower = null;
             placeTower = false;
+            twrplace.Play();
             if (costToChange == 1)
             {
                 currency -= (baseCost1);
@@ -145,6 +155,9 @@ public class ShopController : MonoBehaviour
                 baseCost3 *= 2f;
             }
             costToChange = 0;
+        }
+        else{
+            twrerror.Play();
         }
     }
         
