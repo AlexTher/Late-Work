@@ -12,6 +12,10 @@ public class WaveScript : MonoBehaviour
     public StartNode startNode; //set this in inspector
 
     private float timeBetweenWaves = 2f;
+
+    private float waveScaling;
+    private float curScale;
+    private int repeats = 0;
     
     void Update() {
         //removes destroyed enemies
@@ -29,10 +33,14 @@ public class WaveScript : MonoBehaviour
             }
             else Debug.Log("couldn't get enemy script");
         }
+        waveScaling = .9f;
+        curScale = 1f;
+        repeats = 0;
         StartCoroutine(Wave1());
     }
 
     private IEnumerator Wave1() {
+        yield return new WaitForSeconds(timeBetweenWaves);
         int spawn0 = 20;
         while (spawn0 > 0) {
             
@@ -77,8 +85,7 @@ public class WaveScript : MonoBehaviour
     }
 
 
-    float waveScaling = .75f;
-    float curScale = 1f;
+    
     private IEnumerator Wave4() {
         int spawn0 = 50;
         int spawn1 = 50;
@@ -94,7 +101,27 @@ public class WaveScript : MonoBehaviour
             spawn2 --;
         }
         yield return new WaitForSeconds(timeBetweenWaves);
-        curScale *= curScale;
+        curScale *= waveScaling;
+        repeats += 1;
+        if (repeats%2 == 0) {
+            StartCoroutine(Pearl());
+        }
+        if (repeats%3 == 0) {
+            Him();
+        }
         StartCoroutine(Wave4());
+    }
+
+    private IEnumerator Pearl() {
+        int spawn = 10;
+        while (spawn > 0) {
+            spawnedEnemies.Add(Instantiate(enemyTypes[3]));
+            yield return new WaitForSeconds(5f * curScale);
+            spawn --;
+        }
+    }
+
+    private void Him() {
+        spawnedEnemies.Add(Instantiate(enemyTypes[4]));
     }
 }

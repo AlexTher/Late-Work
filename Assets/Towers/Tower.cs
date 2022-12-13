@@ -29,6 +29,7 @@ public class Tower : MonoBehaviour
     public CircleCollider2D boundingCollider; //kind of a shitty name for what this does but if renamed will undo all assignments \._./
     private SpriteRenderer towerSprite;
     public AudioSource ShootingAudio;
+    public AudioSource towerdeath;
     
 
     public GameObject glowObject;
@@ -41,6 +42,8 @@ public class Tower : MonoBehaviour
         towerSprite = boundingCollider.GetComponent<SpriteRenderer>();
     }
 
+
+    //I just called this in decay since I forgot it was an actual unity thing
     private void OnDestroy()
     {
         towers.Remove(this);
@@ -50,6 +53,7 @@ public class Tower : MonoBehaviour
     void Start()
     {
         isFiring = false;
+        towerdeath = GameObject.Find("TowerDeathNoise").GetComponent<AudioSource>();
         health = maxHealth;
         fireRate = initFireRate;
         spriteGlow = glowObject.GetComponent<SpriteGlowEffect>();
@@ -65,7 +69,6 @@ public class Tower : MonoBehaviour
     //add willdie to enemy. tower won't target that enemy anymore
 
     public void OnTriggerEnter2D(Collider2D enemy) {
-        print(enemy.tag);
         if (enemy.tag == "Enemy") {
             target = enemy.GetComponent<MasterEnemy>();
         }
@@ -105,10 +108,12 @@ public class Tower : MonoBehaviour
         if (health > 0 ) {
             float curG = (health/maxHealth);
             float curR = 1 - (curG);
-            Debug.Log(curR);
             spriteGlow.GlowColor = new Color(curR,curG, 0f, 1f);
             fireRate = initFireRate * (curR + 1f);
         }
-        else { OnDestroy(); }
+        else {
+             towerdeath.Play();
+             OnDestroy(); 
+        }
     }
 }
