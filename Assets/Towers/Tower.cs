@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SpriteGlow;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -9,7 +10,13 @@ public class Tower : MonoBehaviour
     public float range;
     public float damage;
     public float projectileSpeed;
-    public float fireRate;
+    
+    public float initFireRate;
+    private float fireRate;
+
+    //yeah
+    public float maxHealth;
+    private float health;
 
     public Projectile projectile;
     public MasterEnemy target; //current target
@@ -22,6 +29,12 @@ public class Tower : MonoBehaviour
     public CircleCollider2D boundingCollider; //kind of a shitty name for what this does but if renamed will undo all assignments \._./
     private SpriteRenderer towerSprite;
     public AudioSource ShootingAudio;
+    public AudioSource towerdeath;
+    
+
+    public GameObject glowObject;
+
+    private SpriteGlowEffect spriteGlow;
 
     private void Awake()
     {
@@ -29,24 +42,33 @@ public class Tower : MonoBehaviour
         towerSprite = boundingCollider.GetComponent<SpriteRenderer>();
     }
 
+
+    //I just called this in decay since I forgot it was an actual unity thing
     private void OnDestroy()
     {
         towers.Remove(this);
+        Destroy(this.gameObject);
     }
 
     void Start()
     {
         isFiring = false;
+        towerdeath = GameObject.Find("TowerDeathNoise").GetComponent<AudioSource>();
+        health = maxHealth;
+        fireRate = initFireRate;
+        spriteGlow = glowObject.GetComponent<SpriteGlowEffect>();
+        spriteGlow.GlowColor = new Color32(0, 255, 0, 255);
     }
     void Update()
     {
-        
+        Decay();
     }
+
+
 
     //add willdie to enemy. tower won't target that enemy anymore
 
     public void OnTriggerEnter2D(Collider2D enemy) {
-        print(enemy.tag);
         if (enemy.tag == "Enemy") {
             target = enemy.GetComponent<MasterEnemy>();
         }
@@ -77,7 +99,21 @@ public class Tower : MonoBehaviour
         projectile.SpawnProjectile(this, target.gameObject);
         ShootingAudio = GameObject.Find("ShootAudio").GetComponent<AudioSource>();
         ShootingAudio.Play();
+        health --;
         yield return new WaitForSeconds(fireRate);
         isFiring = false;
+    }
+
+    private void Decay() {
+        if (health > 0 ) {
+            float curG = (health/maxHealth);
+            float curR = 1 - (curG);
+            spriteGlow.GlowColor = new Color(curR,curG, 0f, 1f);
+            fireRate = initFireRate * (curR + 1f);
+        }
+        else {
+             towerdeath.Play();
+             OnDestroy(); 
+        }
     }
 }
