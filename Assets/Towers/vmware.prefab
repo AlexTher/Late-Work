@@ -223,10 +223,13 @@ MonoBehaviour:
   range: 1
   damage: 1
   projectileSpeed: 2
-  fireRate: 1
+  initFireRate: 1
+  maxHealth: 50
   projectile: {fileID: 4565800876460766936, guid: d3617ad1e9576b049a5aa211163de4c5, type: 3}
   target: {fileID: 0}
   boundingCollider: {fileID: 3743113287710983638}
+  ShootingAudio: {fileID: 0}
+  glowObject: {fileID: 8063910061257970039}
 --- !u!50 &-3825631212166506624
 Rigidbody2D:
   serializedVersion: 4
@@ -345,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 0, b: 0, a: 1}
+  glowColor: {r: 0, g: 1, b: 0, a: 1}
   glowBrightness: 5
   outlineWidth: 2
   alphaThreshold: 1

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8207142593195190426}
   - component: {fileID: 3968502876181861534}
-  - component: {fileID: 5872855669944431633}
+  - component: {fileID: 6941288701045158995}
   m_Layer: 2
   m_Name: monkye
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5872855669944431633
+--- !u!58 &6941288701045158995
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,15 +223,13 @@ MonoBehaviour:
   range: 1
   damage: 1
   projectileSpeed: 2
-  fireRate: 1
+  initFireRate: 1
+  maxHealth: 50
   projectile: {fileID: 4565800876460766936, guid: a0788d1a022f1ca488e11efef67134dc, type: 3}
   target: {fileID: 0}
-<<<<<<< HEAD
-  boundingCollider: {fileID: 5872855669944431633}
-=======
-  boundingCollider: {fileID: 1303902863360974650}
+  boundingCollider: {fileID: 6941288701045158995}
   ShootingAudio: {fileID: 0}
->>>>>>> main
+  glowObject: {fileID: 8560158541144165065}
 --- !u!50 &-3825631212166506624
 Rigidbody2D:
   serializedVersion: 4
@@ -350,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 1, g: 0, b: 0, a: 1}
+  glowColor: {r: 0, g: 1, b: 0, a: 1}
   glowBrightness: 10
   outlineWidth: 2
   alphaThreshold: 1
