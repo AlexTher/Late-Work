@@ -204,7 +204,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
 --- !u!114 &4315208920092967434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +223,12 @@ MonoBehaviour:
   damage: 1
   projectileSpeed: 2
   fireRate: 1
+  lifespan: 15
   projectile: {fileID: 4565800876460766936, guid: 88cca2775b6693947a1c2fcde5579862, type: 3}
   target: {fileID: 0}
   boundingCollider: {fileID: 7504340188323247142}
+  ShootingAudio: {fileID: 0}
+  towerdeath: {fileID: 0}
 --- !u!50 &-3825631212166506624
 Rigidbody2D:
   serializedVersion: 4

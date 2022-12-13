@@ -38,7 +38,7 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
-        currency = 100;
+        currency = 400;
         twrplace = GameObject.Find("PlacingTowers").GetComponent<AudioSource>();
         twrselect = GameObject.Find("SelectingTower").GetComponent<AudioSource>();
         twrerror = GameObject.Find("ErrorNoise").GetComponent<AudioSource>();

@@ -42,6 +42,8 @@ public class Lives : MonoBehaviour
         else if (lifeint == 1)
         {
             lifeLevel = "Grade: F";
+        }
+        else if(lifeint == 0){
             SceneManager.LoadScene("EndScene");
         }
     }

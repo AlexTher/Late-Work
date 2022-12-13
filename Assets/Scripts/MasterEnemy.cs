@@ -10,7 +10,7 @@ public class MasterEnemy : MonoBehaviour
     [HideInInspector] public float nodeDistance = 0f;
 
     public float distanceTraveled = 0f;
-    public float health;
+    public static float health;
     public float speed;
     int points = 0;
 

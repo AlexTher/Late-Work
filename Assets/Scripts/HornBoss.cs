@@ -23,6 +23,7 @@ public class HornBoss : MonoBehaviour
     {
         evil_laugh.Play();
         MasterEnemy.globalSpeedMod = 2f;
+        MasterEnemy.health *= 2f;
         hornActivated = true;
     }
 
